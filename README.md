@@ -1,13 +1,13 @@
-# repo_template
+# Project title
 
-## Project Tree
+Simple overview of use/purpose.
 
 ## Description
 
-## Installation
+An in-depth paragraph about your project and overview of use.
+
+## Project Tree
 
 ## Usage
-
-## Contributing
 
 ## License
