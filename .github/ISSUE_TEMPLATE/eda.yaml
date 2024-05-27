@@ -1,7 +1,7 @@
-name: Enhancement
-description: Suggest an enhancement feature
-title: "[Enhancement]: "
-labels: ["enhancement"]
+name: EDA
+description: Suggest an EDA to be done
+title: "[EDA]: "
+labels: ["EDA"]
 projects: ["johndolan29/5"]
 body:
   - type: markdown
@@ -11,7 +11,7 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Describe the enhancement
-      placeholder: I want to be able to do X
+      label: Describe the analysis to be done
+      placeholder: I want to look into X
     validations:
       required: true
