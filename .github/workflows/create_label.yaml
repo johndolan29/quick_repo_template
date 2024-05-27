@@ -14,6 +14,6 @@ jobs:
     steps:
       - run: gh label create "$LABELS" --description "Exploratory Data Analysis" --color E99695
         env:
-          GH_TOKEN: ${{ secrets.REPO_TEMPLATE_SECRET }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
           GH_REPO: ${{ github.repository }}
           LABELS: EDA
