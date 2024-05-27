@@ -12,7 +12,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - run: gh label create "$LABELS" --description "Exploratory Data Analysis" --color E99695
+      - run: gh label create "$LABELS" --force --description "Exploratory Data Analysis" --color 1322ed
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
           GH_REPO: ${{ github.repository }}
