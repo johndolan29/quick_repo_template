@@ -1,28 +1,18 @@
-name: Create EDA Label
-
+name: Label issues
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
+  issues:
+    types:
+      - reopened
+      - opened
 jobs:
-  create-label:
+  label_issues:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-
+      issues: write
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Install GitHub CLI
-      run: sudo apt-get install gh
-
-    - name: Authenticate GitHub CLI
-      run: gh auth login --with-token <<< "${{ secrets.REPO_TEMPLATE_SECRET }}"
-
-    - name: Create EDA Label
-      run: gh api -X POST /repos/${{ github.repository }}/labels -f name='EDA' -f color='00bfff' -f description='Exploratory Data Analysis'
-      env:
-        GH_TOKEN: ${{ secrets.REPO_TEMPLATE_SECRET }}
+      - run: gh issue edit "$NUMBER" --add-label "$LABELS"
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TEMPLATE_SECRET }}
+          GH_REPO: ${{ github.repository }}
+          NUMBER: ${{ github.event.issue.number }}
+          LABELS: backlog
