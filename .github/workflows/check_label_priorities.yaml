@@ -2,7 +2,7 @@ name: Label Priority Issues
 
 on:
   issues:
-    types: [opened, edited]
+    types: [created, opened, edited]
 
 jobs:
   label_priority:
