@@ -1,0 +1,35 @@
+name: Label Priority Issues
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  label_priority:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Label issue with priority
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        issue_number=${{ github.event.issue.number }}
+        issue_body="${{ github.event.issue.body }}"
+
+        # Extract priority from the issue body
+        priority=$(echo "$issue_body" | grep -oP '(?<=priority: )\w+')
+
+        if [ -n "$priority" ]; then
+          echo "Priority found: $priority"
+          
+          # Add the priority label to the issue
+          curl -s -X POST -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/$issue_number/labels \
+            -d "{\"labels\":[\"$priority\"]}"
+        else
+          echo "No priority found"
+        fi
