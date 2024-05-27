@@ -3,29 +3,26 @@ name: Create EDA Label
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
   create-label:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Install GitHub CLI
+      run: sudo apt-get install gh
 
-    - name: Create issue label
+    - name: Authenticate GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.REPO_TEMPLATE_SECRET }}"
+
+    - name: Create EDA Label
+      run: gh api -X POST /repos/${{ github.repository }}/labels -f name='EDA' -f color='00bfff' -f description='Exploratory Data Analysis'
       env:
-        GITHUB_TOKEN: ${{ github.REPO_TEMPLATE_SECRET }}
-      run: |
-        RESPONSE=$(curl -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H "Authorization: token $GITHUB_TOKEN" \
-          https://api.github.com/repos/${{ github.repository }}/labels \
-          -d '{
-            "name": "EDA",
-            "color": "00bfff",
-            "description": "Exploratory Data Analysis"
-          }')
-        echo "Response: $RESPONSE"
+        GH_TOKEN: ${{ secrets.REPO_TEMPLATE_SECRET }}
