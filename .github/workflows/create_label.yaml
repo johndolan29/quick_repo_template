@@ -3,7 +3,7 @@ name: Create EDA Label
 on:
   push:
     branches:
-      - '*'  # Listen to all branches'
+      - 'master'  # Listen to all branches'
   workflow_dispatch:
 
 jobs:
