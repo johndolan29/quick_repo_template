@@ -16,6 +16,16 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: status
+    attributes:
+      label: "Status"
+      options:
+        - "To Do"
+        - "In Progress"
+        - "Done"
+    validations:
+      required: true
+  - type: dropdown
     id: priority
     attributes:
       label: "Priority"
