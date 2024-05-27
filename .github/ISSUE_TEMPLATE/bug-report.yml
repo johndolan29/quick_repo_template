@@ -2,7 +2,7 @@ name: Bug Report
 description: Report a bug
 title: "[Bug]: "
 labels: ["bug"]
-projects: ["johndolan29/3"]
+projects: [] # Add the name of the project board you want to add this issue to
 body:
   - type: markdown
     attributes:
