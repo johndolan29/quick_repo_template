@@ -1,18 +1,19 @@
-name: Label issues
+name: Create EDA Label
+
 on:
-  issues:
-    types:
-      - reopened
-      - opened
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
 jobs:
   label_issues:
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
-      - run: gh issue edit "$NUMBER" --add-label "$LABELS"
+      - run: gh label create "$LABELS" --description "Exploratory Data Analysis" --color E99695
         env:
           GH_TOKEN: ${{ secrets.REPO_TEMPLATE_SECRET }}
           GH_REPO: ${{ github.repository }}
-          NUMBER: ${{ github.event.issue.number }}
-          LABELS: backlog
+          LABELS: EDA
