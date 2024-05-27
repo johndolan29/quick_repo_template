@@ -15,12 +15,9 @@ jobs:
       uses: actions/checkout@v2
 
       
-    - name: Print repository info
-      run: echo "Repository: ${{ github.repository }}"
-
     - name: Create issue label
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TEMPLATE_SECRET }}
+        GITHUB_TOKEN: ${{ .REPO_TEMPLATE_SECRET }}
       run: |
         RESPONSE=$(curl -X POST \
           -H "Accept: application/vnd.github.v3+json" \
