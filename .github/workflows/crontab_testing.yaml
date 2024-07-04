@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Get issues and check priorities
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          GH_REPO: ${{ github.repository }}
         run: |
           # Install required packages
           pip install PyGithub
