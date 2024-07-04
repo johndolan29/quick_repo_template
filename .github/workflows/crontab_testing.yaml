@@ -1,0 +1,57 @@
+name: Check Issue Priorities
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs at 00:00 UTC every day
+
+jobs:
+  check-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyGithub
+
+      - name: Get issues and check priorities
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          import os
+          from github import Github
+
+          # Authenticate with GitHub
+          g = Github(os.environ['GITHUB_TOKEN'])
+
+          # Get the repository
+          repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+
+          # Get all open issues
+          issues = repo.get_issues(state='open')
+
+          for issue in issues:
+              # Get the priority label
+              priority = None
+              for label in issue.labels:
+                  if label.name.startswith('Priority:'):
+                      priority = label.name
+                      break
+
+              print(f"Issue #{issue.number}: {issue.title}")
+              print(f"Priority: {priority if priority else 'Not set'}")
+              print("---")
+
+        shell: python
+
+      - name: Create summary
+        run: |
+          echo "Issue priorities have been checked. See the job log for details."
+          echo "For a full report, check the script output in the previous step."
