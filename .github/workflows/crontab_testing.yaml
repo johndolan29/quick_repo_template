@@ -25,7 +25,7 @@ jobs:
             priority: (
               (.labels[] | select(.name | test("Priority:.*"; "i")) | .name) //
               (if (.body | test("Priority:.*"; "i"))
-               then (.body | match("Priority:.*"; "i").string | sub("Priority:"; "") | strip)
+               then (.body | match("Priority:.*"; "i").string | sub("Priority:"; "") | sub("^\\s+"; "") | sub("\\s+$"; ""))
                else "Not specified"
                end)
             )
