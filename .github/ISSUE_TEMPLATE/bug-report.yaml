@@ -23,6 +23,6 @@ body:
         - "Low"
         - "Medium"
         - "High"
-      default: ""
+      default: "None"
     validations:
       required: true
