@@ -15,3 +15,13 @@ body:
       placeholder: I want to be able to do X
     validations:
       required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      options:
+        - "Low"
+        - "Medium"
+        - "High"
+    validations:
+      required: true
