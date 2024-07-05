@@ -1,0 +1,27 @@
+[
+    {
+        "name": "refactor",
+        "description": "an improvement to the code structure",
+        "color": "008672"
+    },
+    {
+        "name": "bug",
+        "description": "Something isn't working",
+        "color": "d73a4a"
+    },
+    {
+        "name": "documentation",
+        "description": "Improvements or additions to documentation",
+        "color": "0075ca"
+    },
+    {
+        "name": "enhancement",
+        "description": "New feature or request",
+        "color": "C5EDF5"
+    },
+    {
+        "name": "EDA",
+        "description": "Exploratory Data Analysis",
+        "color": "1322ed"
+    }
+  ]
