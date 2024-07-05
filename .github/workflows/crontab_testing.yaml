@@ -38,19 +38,8 @@ jobs:
 
           # Get all open issues
           issues = repo.get_issues(state='open')
-
-          for issue in issues:
-              # Get the priority label
-              priority = None
-              for label in issue.labels:
-                  if label.name.startswith('Priority:'):
-                      priority = label.name
-                      break
-
-              print(f"Issue #{issue.number}: {issue.title}")
-              print(f"Priority: {priority if priority else 'Not set'}")
-              print("---")
-
+          print(issues)
+          
         shell: python
 
       - name: Create summary
