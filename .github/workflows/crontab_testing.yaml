@@ -6,12 +6,17 @@ on:
       - 'master'
 
 jobs:
-  label_issues:
+  print-issue-details:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
+    
     steps:
-      - run: gh issue list
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-          GH_REPO: ${{ github.repository }}
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Print issue details
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh issue list --limit 1000 --state all --json number,title,body \
+          --jq '.[] | "Issue #\(.number)\nTitle: \(.title)\nBody:\n\(.body)\n---\n"'
+      shell: bash
