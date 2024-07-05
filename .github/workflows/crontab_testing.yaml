@@ -1,48 +1,30 @@
-name: Check Issue Priorities
+name: List Issues
 
 on:
   push:
     branches:
-      - 'master'
+      - main
+  workflow_dispatch:
 
 jobs:
-  check-issues:
+  list-issues:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install PyGithub
-
-      - name: Get issues and check priorities
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          import os
-          from github import Github
-
-          # Authenticate with GitHub
-          g = Github(os.environ['GITHUB_TOKEN'])
-
-          # Get the repository
-          repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
-
-          # Get all open issues
-          issues = repo.get_issues(state='open')
-          print(issues)
+    - name: List all issues
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { data: issues } = await github.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'all'
+          });
           
-        shell: python
-
-      - name: Create summary
-        run: |
-          echo "Issue priorities have been checked. See the job log for details."
-          echo "For a full report, check the script output in the previous step."
+          console.log('All issues in the repository:');
+          issues.forEach(issue => {
+            console.log(`#${issue.number} - ${issue.title}`);
+          });
