@@ -18,16 +18,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh issue list --limit 100 --state all \
-          --json number,title,body,labels \
+          --json number,title,projectItems \
           --jq '.[] | {
             number: .number,
             title: .title,
             priority: (
-              (.labels[] | select(.name | test("Priority:.*"; "i")) | .name) //
-              (if (.body | test("Priority:.*"; "i"))
-               then (.body | match("Priority:.*"; "i").string | sub("Priority:"; "") | sub("^\\s+"; "") | sub("\\s+$"; ""))
-               else "Not specified"
-               end)
+              .projectItems[].fieldValues[] | 
+              select(.field.name == "Priority") | 
+              .name // "Not specified"
             )
           } | "Issue #\(.number)\nTitle: \(.title)\nPriority: \(.priority)\n---"'
       shell: bash
