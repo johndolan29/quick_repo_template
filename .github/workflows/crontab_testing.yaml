@@ -17,30 +17,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh issue list --limit 1000 --state all --json number,title,body \
-          --jq '.[] | "Issue #\(.number)\nTitle: \(.title)\nBody:\n\(.body)"' |
-        awk '
-          /^Issue #/ {print}
-          /^Title:/ {print}
-          /^Body:/ {
-            print
-            body = ""
-            priority = ""
-            getline
-            while ($0 != "") {
-              body = body $0 "\n"
-              if (tolower($0) ~ /priority/) {
-                sub(/.*priority[: ]*/, "", $0)
-                priority = $0
-              }
-              getline
-            }
-            if (priority != "") {
-              print "Priority:", priority
-            } else {
-              print "Priority: Not specified"
-            }
-            print "---"
-          }
-        '
+        gh issue list --limit 1000 --state all \
+          --json number,title,body,projectItems \
+          --jq '.[] | {
+            number: .number,
+            title: .title,
+            priority: (.projectItems[].fieldValues[] | select(.field.name == "Priority").name // "Not specified")
+          } | "Issue #\(.number)\nTitle: \(.title)\nPriority: \(.priority)\n---"'
       shell: bash
