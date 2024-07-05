@@ -17,11 +17,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh issue list --limit 1000 --state all \
-          --json number,title,body,projectItems \
-          --jq '.[] | {
-            number: .number,
-            title: .title,
-            priority: (.projectItems[].fieldValues[] | select(.field.name == "Priority").name // "Not specified")
-          } | "Issue #\(.number)\nTitle: \(.title)\nPriority: \(.priority)\n---"'
+        echo "Fetching issue details..."
+        gh issue list --limit 10 --state all --json number,title,body,labels,assignees,projectItems,projectFields > issues.json
+        
+        echo "Raw JSON output:"
+        cat issues.json
+        
+        echo -e "\nFormatted output:"
+        jq -r '.[] | "Issue #\(.number)\nTitle: \(.title)\nBody: \(.body)\nLabels: \(.labels[].name)\nAssignees: \(.assignees[].login)\nProject Items: \(.projectItems)\nProject Fields: \(.projectFields)\n---"' issues.json
       shell: bash
