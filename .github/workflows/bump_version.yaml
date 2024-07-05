@@ -1,22 +1,24 @@
-# example 1: on push to master
-name: Bump version
+name: AutoTagBot
+
 on:
   push:
     branches:
       - master
+    paths:
+      # This would not be necessary, as AutoTagBot skips already tagged versions
+      # It is however desirable to not trigger this workflow if not required
+      - package.json
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
+  auto-tag-bot:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: '0'
+      - name: Check out repository
+        uses: actions/checkout@v2
 
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
-        WITH_V: false
+      - name: Release new versions using AutoTagBot
+        uses: snapserv/action-autotagbot@master
+        with:
+          api_token: '${{ secrets.GITHUB_TOKEN }}'
+          source_file: 'package.json'
+          version_pattern: '"version"\s*:\s*"(?<version>[0-9.]+)"'

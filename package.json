@@ -1,0 +1,19 @@
+{
+    "name": "my-python-package",
+    "version": "0.1.0",
+    "description": "My awesome Python package",
+    "main": "main.py",
+    "scripts": {
+        "test": "pytest",
+        "lint": "flake8"
+    },
+    "author": "John Dolan",
+    "license": "MIT",
+    "dependencies": {
+        "requests": "^2.26.0"
+    },
+    "devDependencies": {
+        "pytest": "^6.2.5",
+        "flake8": "^4.0.1"
+    }
+}
