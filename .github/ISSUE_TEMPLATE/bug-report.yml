@@ -23,6 +23,5 @@ body:
         - "Low"
         - "Medium"
         - "High"
-      default: "None"
     validations:
       required: true
