@@ -8,6 +8,7 @@ on:
 jobs:
   label_issues:
     runs-on: ubuntu-latest
+    if: github.run_number == 1
     permissions:
       issues: write
     steps:
