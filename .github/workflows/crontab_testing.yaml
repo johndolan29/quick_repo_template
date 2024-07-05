@@ -23,8 +23,8 @@ jobs:
             number: .number,
             title: .title,
             priority: (
-              .projectItems[].fieldValues[] | 
-              select(.field.name == "Priority") | 
+              .projectItems[].fieldValues[]? | 
+              select(.field.name == "Priority")? | 
               .name // "Not specified"
             )
           } | "Issue #\(.number)\nTitle: \(.title)\nPriority: \(.priority)\n---"'
