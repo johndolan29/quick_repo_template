@@ -1,9 +1,12 @@
-on:
-  push:
-    - master
 name: "Issue Label Manager Action"
 description: "Will update repo's labels based on data in JSON file located at $REPO/.github/labels.json"
 author: "Benjamin Lannon <benjamin@lannonbr.com>"
+
+on:
+  push:
+    - master
+
+
 runs:
   using: "node16"
   main: "lib/index.js"
