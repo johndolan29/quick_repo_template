@@ -1,3 +1,6 @@
+on:
+  push:
+    - master
 name: "Issue Label Manager Action"
 description: "Will update repo's labels based on data in JSON file located at $REPO/.github/labels.json"
 author: "Benjamin Lannon <benjamin@lannonbr.com>"
