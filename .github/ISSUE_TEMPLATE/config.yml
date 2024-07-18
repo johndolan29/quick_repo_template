@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: FAQs
-    url: https://github.com/johndolan29/{{ github.event.repository.name }}/wiki
+    url: https://github.com/johndolan29/repo_template/wiki
     about: Check out our wiki page.
