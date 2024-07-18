@@ -1,0 +1,57 @@
+name: Notify Issue Reporters of Missing Descriptions
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  check-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyGithub
+
+      - name: Check issues and notify reporters
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          import os
+          from github import Github
+
+          # Initialize GitHub client
+          g = Github(os.environ['GITHUB_TOKEN'])
+
+          # Get the current repository
+          repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+
+          # Get all open issues
+          open_issues = repo.get_issues(state='open')
+
+          for issue in open_issues:
+              if not issue.body or issue.body.strip() == '':
+                  # Create a comment on the issue
+                  comment = (
+                      f"Hi @{issue.user.login},\n\n"
+                      "Thank you for reporting this issue. However, we noticed that "
+                      "the description is missing. Could you please provide more details "
+                      "about the issue? This will help us understand and address it more effectively.\n\n"
+                      "Please include:\n"
+                      "- Steps to reproduce the issue\n"
+                      "- Expected behavior\n"
+                      "- Actual behavior\n"
+                      "- Any error messages or screenshots if applicable\n\n"
+                      "Thank you for your collaboration!"
+                  )
+                  issue.create_comment(comment)
+                  print(f"Notified user {issue.user.login} about missing description in issue #{issue.number}")
