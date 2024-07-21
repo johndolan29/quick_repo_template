@@ -10,14 +10,14 @@ body:
   - type: textarea
     id: problem
     attributes:
-      label: Describe the analysis to be done
+      label: Problem
       placeholder: Need to look into why the model is not performing well on the test set
     validations:
       required: true
   - type: textarea
     id: solution
     attributes:
-      label: Describe the analysis to be done
+      label: Potential Solution
       placeholder: What are the key questions you want to answer? What data do you need to answer these questions? What are the key insights you hope to gain from this analysis?
     validations:
       required: true

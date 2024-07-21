@@ -10,14 +10,14 @@ body:
   - type: textarea
     id: problem
     attributes:
-      label: Describe the enhancement
+      label: Problem
       placeholder: The model needs to be able to handle null values in the dataset
     validations:
       required: true
   - type: textarea
     id: solution
     attributes:
-      label: Describe the enhancement
+      label: Solution
       placeholder: Why is this enhancement needed? What problem does it solve? Who will benefit from this enhancement?
     validations:
       required: true

@@ -10,7 +10,7 @@ body:
   - type: textarea
     id: problem
     attributes:
-      label: Describe the issue
+      label: Describe the problem
       placeholder: I get an error when I run X notebook in cell Y
     validations:
       required: true
