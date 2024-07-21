@@ -8,9 +8,16 @@ body:
       value: |
         Please fill out the sections below to help everyone understand what needs to be done
   - type: textarea
-    id: description
+    id: problem
     attributes:
       label: Describe the enhancement
-      placeholder: Why is this enhancement needed? \n What problem does it solve? \n Who will benefit from this enhancement?
+      placeholder: The model needs to be able to handle null values in the dataset
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the enhancement
+      placeholder: Why is this enhancement needed? \nWhat problem does it solve? \nWho will benefit from this enhancement?
     validations:
       required: true
