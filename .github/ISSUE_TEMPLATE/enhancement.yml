@@ -18,6 +18,6 @@ body:
     id: solution
     attributes:
       label: Describe the enhancement
-      placeholder: Why is this enhancement needed? \nWhat problem does it solve? \nWho will benefit from this enhancement?
+      placeholder: Why is this enhancement needed? What problem does it solve? Who will benefit from this enhancement?
     validations:
       required: true
