@@ -1,6 +1,5 @@
 name: EDA
 description: Suggest an EDA to be done
-title: ""
 labels: ["EDA"]
 projects: ["johndolan29/5"]
 body:
