@@ -1,6 +1,6 @@
 name: Enhancement
 description: Suggest an enhancement feature
-title: "[Enhancement]: "
+title: ""
 labels: ["enhancement"]
 projects: ["johndolan29/5"]
 body:
@@ -12,16 +12,8 @@ body:
     id: description
     attributes:
       label: Describe the enhancement
-      placeholder: I want to be able to do X
-    validations:
-      required: true
-  - type: dropdown
-    id: priority
-    attributes:
-      label: "Priority"
-      options:
-        - "Low"
-        - "Medium"
-        - "High"
+      placeholder: Why is this enhancement needed? 
+      What problem does it solve?
+      Who will benefit from this enhancement?
     validations:
       required: true

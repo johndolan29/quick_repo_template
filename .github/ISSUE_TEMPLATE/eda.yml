@@ -1,6 +1,6 @@
 name: EDA
 description: Suggest an EDA to be done
-title: "[EDA]: "
+title: ""
 labels: ["EDA"]
 projects: ["johndolan29/5"]
 body:
@@ -12,6 +12,8 @@ body:
     id: description
     attributes:
       label: Describe the analysis to be done
-      placeholder: I want to look into X
+      placeholder: What are the key questions you want to answer?
+      What data do you need to answer these questions?
+      What are the key insights you hope to gain from this analysis?
     validations:
       required: true

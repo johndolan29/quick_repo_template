@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report a bug
-title: "[Bug]: "
+title: ""
 labels: ["bug"]
 projects: ["johndolan29/5"] # Add the name of the project board you want to add this issue to
 body:
@@ -12,16 +12,13 @@ body:
     id: description
     attributes:
       label: Describe the issue
-      placeholder: I get an error when I try to do X
+      placeholder: I get an error when I run X notebook in cell Y
     validations:
       required: true
-  - type: dropdown
-    id: priority
+  - type: textarea
+    id: description
     attributes:
-      label: "Priority"
-      options:
-        - "Low"
-        - "Medium"
-        - "High"
+      label: Definition of Done
+      placeholder: Check for nulls in the dataset and ensure the code runs without errors
     validations:
       required: true

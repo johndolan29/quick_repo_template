@@ -1,6 +1,6 @@
 name: Template
 description: Template
-title: "Template: "
+title: ""
 labels: [""]
 projects: ["johndolan29/5"] # Add the name of the project board you want to add this issue to
 body:
