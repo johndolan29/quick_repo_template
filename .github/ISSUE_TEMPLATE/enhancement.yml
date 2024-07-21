@@ -12,8 +12,6 @@ body:
     id: description
     attributes:
       label: Describe the enhancement
-      placeholder: Why is this enhancement needed? 
-      What problem does it solve?
-      Who will benefit from this enhancement?
+      placeholder: Why is this enhancement needed? \n What problem does it solve? \n Who will benefit from this enhancement?
     validations:
       required: true

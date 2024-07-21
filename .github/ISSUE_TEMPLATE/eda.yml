@@ -12,8 +12,6 @@ body:
     id: description
     attributes:
       label: Describe the analysis to be done
-      placeholder: What are the key questions you want to answer?
-      What data do you need to answer these questions?
-      What are the key insights you hope to gain from this analysis?
+      placeholder: What are the key questions you want to answer? \n What data do you need to answer these questions? \nWhat are the key insights you hope to gain from this analysis?
     validations:
       required: true
