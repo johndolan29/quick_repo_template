@@ -16,5 +16,9 @@
         "njpwerner.autodocstring",
         "shd101wyy.markdown-preview-enhanced",
         "streetsidesoftware.code-spell-checker",
+        "Gruntfuggly.todo-tree",
+        "github.copilot-chat",
+        "github.copilot",
+        "davidanson.vscode-markdownlint"
     ],
 }
