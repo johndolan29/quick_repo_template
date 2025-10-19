@@ -1,0 +1,7 @@
+[tool.poetry]
+name = "package_name"
+version = "0.0.1"
+description = "A short description of the package."
+authors = ["Author <author@gmail.com>"]
+license = "MIT"
+readme = "README.md"
